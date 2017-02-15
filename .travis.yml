@@ -9,7 +9,7 @@ env:
     - QEMU_KERNEL=kernel-qemu-4.1.7-jessie
 
   matrix:
-    - IMAGE=lepidopter-v0.3.5-beta-armel.img.xz
+    - IMAGE=lepidopter-v0.3.5-beta-armel.img
 
 before_install:
   - sudo apt-get -qq update
