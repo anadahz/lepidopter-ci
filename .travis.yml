@@ -19,7 +19,7 @@ install:
   - sudo ./install-dependencies
 
 before_script:
-  - sudo ./qemu-run
+  - sudo ./qemu-run &
   - ./wait-for-ssh localhost 2222
 
 script:
