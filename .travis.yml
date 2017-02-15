@@ -1,4 +1,7 @@
+language: generic
 sudo: true
+dist: trusty
+
 env:
   global:
     - BASE_URL=https://get.ooni.torproject.org/lepidopter
