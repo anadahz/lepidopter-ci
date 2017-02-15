@@ -1,0 +1,23 @@
+sudo: true
+env:
+  global:
+    - BASE_URL=https://get.ooni.torproject.org/lepidopter
+    - QEMU_KERNEL_URL=https://github.com/dhruvvyas90/qemu-rpi-kernel/raw/master
+    - QEMU_KERNEL=kernel-qemu-4.1.7-jessie
+
+  matrix:
+    - IMAGE=lepidopter-v0.3.5-beta-armel.img.xz
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get -qq install qemu-system-arm wget xz-utils sshpass gnupg
+
+install:
+  - sudo ./install-dependencies
+
+before_script:
+  - sudo ./qemu-run
+  - ./wait-for-ssh localhost 2222
+
+script:
+  - sshpass -p lepidopter ssh localhost -o StrictHostKeyChecking=no -p 2222 -l lepidopter "cat /etc/motd"
