@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
-nc -z $1 $2
+${SSH_CMD}
 
 while test $? -gt 0
 do
    sleep 10
-   echo "Waiting for $1 in port $2"
-   nc -z $1 $2
+   echo "Waiting for SSH"
+   ${SSH_CMD}
 done
