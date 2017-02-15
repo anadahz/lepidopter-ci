@@ -3,4 +3,4 @@ wget -qO- ${BASE_URL}/lepidopter-signing-key.asc | gpg --import
 wget ${BASE_URL}/${IMAGE}.xz
 wget ${BASE_URL}/${IMAGE}.asc
 wget ${QEMU_KERNEL_URL}/${QEMU_KERNEL}
-unxz ${IMAGE}
+unxz ${IMAGE}.xz
