@@ -22,7 +22,7 @@ install:
   - sudo ./qemu-run &
 
 script:
-  - ./waitforssh
+  - ./wait-for-ssh
   - ${SSH_CMD} "cat /etc/motd"
   - ${SSH_CMD} "ooniprobe --version"
   - ${SSH_CMD} "wget -vS -O- localhost:8080"
