@@ -1,5 +1,4 @@
 #!/usr/bin/expect -f
-set IMAGE [lindex $argv 0]
 set timeout 600
 
 spawn qemu-system-arm \
@@ -7,7 +6,7 @@ spawn qemu-system-arm \
     -cpu arm1136-r2 \
     -kernel $env(QEMU_KERNEL) \
     --nographic
-    -hda $(IMAGE) \
+    -hda $argv \
     -append "root=/dev/sda2 waitroo rootfstype=ext4 rw console=ttyAMA0" \
     -net nic -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::8080-:80
 
