@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-set -ex
+set -x
 
 MNT_DIR="/mnt/image"
 modprobe loop
@@ -8,7 +8,7 @@ LOOP_PART=`losetup --show -f ${IMAGE}`
 
 mkdir -p ${MNT_DIR}
 ls ${LOOP_PART}*
-mount -o loop,offset=11914 ${MNT_DIR}
+kpartx -av ${LOOP_PART}
 mount ${LOOP_PART}p2 ${MNT_DIR}
 truncate -s 0 ${MNT_DIR}/etc/ld.so.preload
 cat <<'EOF' > ${MNT_DIR}/etc/udev/rules.d/90-qemu.rules

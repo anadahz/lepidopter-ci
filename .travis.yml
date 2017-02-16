@@ -14,7 +14,7 @@ env:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get -qq install qemu-system-arm wget xz-utils sshpass gnupg
+  - sudo apt-get -qq install qemu-system-arm wget xz-utils sshpass gnupg kpartx
 
 install:
   - sudo ./install-dependencies
