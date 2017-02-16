@@ -22,9 +22,9 @@ install:
   - sudo ./install-dependencies
   - sudo ./prepare-image
   - sudo ./qemu-run &
+  - while true; do nc -zv localhost ${SSH_PORT}; sleep 10; done
 
 script:
-  - ./wait-for-ssh localhost ${SSH_PORT}
   - ${SSH_CMD} "cat /etc/motd"
   - ${SSH_CMD} "ooniprobe --version"
   - ${SSH_CMD} "wget -vS -O- localhost:8080"
