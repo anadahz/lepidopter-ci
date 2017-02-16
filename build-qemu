@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+wget http://download.qemu-project.org/qemu-2.8.0.tar.xz
+tar xvJf qemu-2.8.0.tar.xz
+cd qemu-2.8.0
+./configure
+make && make install
