@@ -1,14 +1,13 @@
 #!/usr/bin/expect -f
-send_user "$env(PATH)\n"
 
 set timeout 600
 
 spawn qemu-system-arm \
     -M versatilepb \
     -cpu arm1136-r2 \
-    -kernel ${QEMU_KERNEL} \
+    -kernel $::env(QEMU_KERNEL) \
     --nographic
-    -hda ${IMAGE} \
+    -hda $::env(IMAGE) \
     -append "root=/dev/sda2 waitroo rootfstype=ext4 rw console=ttyAMA0" \
     -net nic -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::8080-:80
 
