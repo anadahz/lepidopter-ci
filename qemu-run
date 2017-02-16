@@ -1,5 +1,5 @@
-#!/usr/bin/env sh
 #!/usr/bin/expect -f
+send_user "$env(PATH)\n"
 
 set timeout 600
 
