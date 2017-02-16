@@ -22,7 +22,7 @@ install:
   - sudo ./install-dependencies
   - sudo ./prepare-image
   - sudo ./qemu-run &
-  - while true; do nc -zv localhost ${SSH_PORT}; sleep 10; done
+  - ./wait-for-ssh localhost ${SSH_PORT}
 
 script:
   - ${SSH_CMD} "cat /etc/motd"
