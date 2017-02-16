@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
+sleep 70s;
 nc -zv $1 $2
+
 while test $? -gt 0
 do
    sleep 10
