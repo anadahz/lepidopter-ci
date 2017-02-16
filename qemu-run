@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 qemu-system-arm \
-    -M raspi2 \
+    -M versatilepb \
+    -cpu arm1136-r2 \
     -kernel ${QEMU_KERNEL} \
-    -sd ${IMAGE} \
-    -display none \
-    -serial stdio \
-    -display none \
+    --nographic
+    -hda ${IMAGE} \
+    -append "root=/dev/sda2 waitroo rootfstype=ext4 rw console=ttyAMA0" \
     -net nic -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::8080-:80
