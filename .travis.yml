@@ -5,24 +5,18 @@ dist: trusty
 env:
   global:
     - BASE_URL=https://get.ooni.torproject.org/lepidopter
-    - QEMU_KERNEL_URL=https://github.com/polaco1782/raspberry-qemu/raw/master/
-    - QEMU_KERNEL=kernel-qemu
-    - SSH_CMD="sshpass -p lepidopter ssh localhost -o StrictHostKeyChecking=no -p 2222 -l lepidopter"
+    - QEMU_KERNEL_URL=https://github.com/dhruvvyas90/qemu-rpi-kernel/raw/master
+    - QEMU_KERNEL=kernel-qemu-4.1.7-jessie
 
   matrix:
     - IMAGE=lepidopter-v0.3.5-beta-armel.img
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get -qq install qemu-system-arm wget xz-utils sshpass gnupg kpartx
+  - sudo apt-get -qq install qemu-system-arm wget xz-utils gnupg expect
 
 install:
   - sudo ./install-dependencies
-  - sudo ./prepare-image
-
-before_script:
-  - sudo ./qemu-run &
-  - ./wait-for-ssh
 
 script:
-  - ${SSH_CMD} "cat /etc/motd"
+  - ./qemu-run
