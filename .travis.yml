@@ -19,4 +19,4 @@ install:
   - sudo ./install-dependencies
 
 script:
-  - ./qemu-run
+  - sudo ./qemu-run
