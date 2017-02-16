@@ -14,10 +14,11 @@ env:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get -qq install qemu-system-arm wget xz-utils sshpass gnupg
+  - sudo apt-get -qq install qemu-system-arm wget xz-utils sshpass gnupg losetup
 
 install:
   - sudo ./install-dependencies
+  - sudo ./prepare-image
 
 before_script:
   - sudo ./qemu-run &
