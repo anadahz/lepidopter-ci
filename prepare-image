@@ -3,7 +3,7 @@
 MNT_DIR="/mnt/image"
 modprobe loop
 modprobe ext4
-LOOP_PART=`losetup --show -f -n ${IMAGE}`
+LOOP_PART=`losetup --show -f ${IMAGE}`
 
 mkdir ${MNT_DIR}
 mount ${LOOP_PART}p2 ${MNT_DIR}
