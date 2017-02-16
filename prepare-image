@@ -3,7 +3,7 @@
 MNT_DIR="/mnt/image"
 modprobe loop
 modprobe ext4
-LOOP_PART=`losetup --show -f -P -n ${IMAGE}`
+LOOP_PART=`losetup --show -f -n ${IMAGE}`
 
 mkdir ${MNT_DIR}
 mount ${LOOP_PART}p2 ${MNT_DIR}
@@ -11,4 +11,4 @@ truncate -s 0 ${MNT_DIR}/etc/ld.so.preload
 sed -i 2,3d ${MNT_DIR}/etc/fstab
 sync
 umount ${MNT_DIR}
-losetup -D
+losetup -d ${LOOP_PART}
