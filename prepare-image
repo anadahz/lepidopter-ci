@@ -1,17 +1,20 @@
 #!/usr/bin/env sh
+set -ex
 
 MNT_DIR="/mnt/image"
 modprobe loop
 modprobe ext4
 LOOP_PART=`losetup --show -f ${IMAGE}`
 
-mkdir ${MNT_DIR}
+mkdir -p ${MNT_DIR}
+ls ${LOOP_PART}*
+mount -o loop,offset=11914 ${MNT_DIR}
 mount ${LOOP_PART}p2 ${MNT_DIR}
 truncate -s 0 ${MNT_DIR}/etc/ld.so.preload
 cat <<'EOF' > ${MNT_DIR}/etc/udev/rules.d/90-qemu.rules
 KERNEL=="sda", SYMLINK+="mmcblk0"
 KERNEL=="sda?", SYMLINK+="mmcblk0p%n"
-KERNEL=="sda2", SYMLINK+="root"kk
+KERNEL=="sda2", SYMLINK+="root"
 EOF
 sync
 umount ${MNT_DIR}
