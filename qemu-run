@@ -1,8 +1,9 @@
+#!/usr/bin/env sh
 #!/usr/bin/expect -f
 
 set timeout 600
 
-spawsn qemu-system-arm \
+spawn qemu-system-arm \
     -M versatilepb \
     -cpu arm1136-r2 \
     -kernel ${QEMU_KERNEL} \
