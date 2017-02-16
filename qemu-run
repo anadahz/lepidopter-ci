@@ -3,9 +3,9 @@ qemu-system-arm -M versatilepb \
     -cpu arm1136-r2 \
     -kernel ${QEMU_KERNEL} \
     -hda ${IMAGE} \
-    -m 512 \
+    -m 256 \
     -display none \
     -serial stdio \
-    -nographic \
+    -display none \
     -append "root=/dev/sda2 rootfstype=ext4 rw" \
     -net nic -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::8080-:80

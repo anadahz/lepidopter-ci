@@ -5,8 +5,8 @@ dist: trusty
 env:
   global:
     - BASE_URL=https://get.ooni.torproject.org/lepidopter
-    - QEMU_KERNEL_URL=https://github.com/dhruvvyas90/qemu-rpi-kernel/raw/master
-    - QEMU_KERNEL=kernel-qemu-4.1.7-jessie
+    - QEMU_KERNEL_URL=https://github.com/polaco1782/raspberry-qemu/raw/master/
+    - QEMU_KERNEL=kernel-qemu
     - SSH_CMD="sshpass -p lepidopter ssh localhost -o StrictHostKeyChecking=no -p 2222 -l lepidopter"
 
   matrix:
