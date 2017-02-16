@@ -14,9 +14,10 @@ env:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get -qq install qemu-system-arm wget xz-utils sshpass gnupg kpartx
+  - sudo apt-get install git libglib2.0-dev libfdt-dev libpixman-1-dev zlib1g-dev wget xz-utils sshpass gnupg kpartx
 
 install:
+  - sudo ./build-qemu
   - sudo ./install-dependencies
   - sudo ./prepare-image
 
