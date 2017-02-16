@@ -9,7 +9,7 @@ LOOP_PART=`losetup --show -f ${IMAGE}`
 mkdir -p ${MNT_DIR}
 ls ${LOOP_PART}*
 kpartx -av ${LOOP_PART}
-mount /dev/mapper/`basename ${LOOP_PART}` ${MNT_DIR}
+mount /dev/mapper/`basename ${LOOP_PART}`p2 ${MNT_DIR}
 truncate -s 0 ${MNT_DIR}/etc/ld.so.preload
 cat <<'EOF' > ${MNT_DIR}/etc/udev/rules.d/90-qemu.rules
 KERNEL=="sda", SYMLINK+="mmcblk0"
