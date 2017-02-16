@@ -5,5 +5,5 @@ qemu-system-arm \
     -kernel ${QEMU_KERNEL} \
     --nographic
     -hda ${IMAGE} \
-    -append "root=/dev/sda2 waitroo rootfstype=ext4 rw console=ttyAMA0" \
+    -append "root=/dev/sda2 waitroot rootfstype=ext4 rw console=ttyAMA0" \
     -net nic -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::8080-:80
