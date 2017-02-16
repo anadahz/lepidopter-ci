@@ -19,4 +19,4 @@ install:
   - sudo ./install-dependencies
 
 script:
-  - expect -f qemu-run -i ${IMAGE}
+  - ./qemu-run

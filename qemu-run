@@ -1,16 +1,9 @@
-#!/usr/bin/expect -f
-set timeout 600
-
-spawn qemu-system-arm \
+#!/usr/bin/env sh
+qemu-system-arm \
     -M versatilepb \
     -cpu arm1136-r2 \
-    -kernel $env(QEMU_KERNEL) \
+    -kernel ${QEMU_KERNEL} \
     --nographic
-    -hda $argv \
+    -hda ${IMAGE} \
     -append "root=/dev/sda2 waitroo rootfstype=ext4 rw console=ttyAMA0" \
     -net nic -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::8080-:80
-
-expect "lepidopter login: "
-send "lepidopter\r"
-expect "Password: "
-send "lepidopter\r"
