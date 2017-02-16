@@ -8,7 +8,11 @@ LOOP_PART=`losetup --show -f ${IMAGE}`
 mkdir ${MNT_DIR}
 mount ${LOOP_PART}p2 ${MNT_DIR}
 truncate -s 0 ${MNT_DIR}/etc/ld.so.preload
-sed -i 2,3d ${MNT_DIR}/etc/fstab
+cat <<'EOF' > ${MNT_DIR}/etc/udev/rules.d/90-qemu.rules
+KERNEL=="sda", SYMLINK+="mmcblk0"
+KERNEL=="sda?", SYMLINK+="mmcblk0p%n"
+KERNEL=="sda2", SYMLINK+="root"kk
+EOF
 sync
 umount ${MNT_DIR}
 losetup -d ${LOOP_PART}
