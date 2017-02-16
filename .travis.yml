@@ -13,10 +13,11 @@ env:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get -qq install qemu-system-arm wget xz-utils gnupg expect
+  - sudo apt-get -qq install qemu-system-arm wget xz-utils gnupg kpartx
 
 install:
   - sudo ./install-dependencies
+  - sudo ./prepare-image
 
 script:
   - sudo ./qemu-run
