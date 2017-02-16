@@ -5,9 +5,12 @@ modprobe loop
 modprobe ext4
 LOOP_PART=`losetup --show -f ${IMAGE}`
 
-mkdir ${MNT_DIR}
-mount ${LOOP_PART}p2 ${MNT_DIR}
+mkdir -p ${MNT_DIR}
+ls ${LOOP_PART}*
+kpartx -av ${LOOP_PART}
+mount /dev/mapper/`basename ${LOOP_PART}`p2 ${MNT_DIR}
 sed -i 3d ${MNT_DIR}/etc/fstab
+cat ${MNT_DIR}/etc/fstab
 sync
 umount ${MNT_DIR}
 losetup -d ${LOOP_PART}
