@@ -6,4 +6,4 @@ qemu-system-arm \
     --nographic \
     -drive file=${IMAGE},format=raw \
     -append "root=/dev/sda2 rootfstype=ext4 rw console=ttyAMA0" \
-    -net nic -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::8080-:80
+    -net nic -net user,hostfwd=tcp::${SSH_PORT}-:22,hostfwd=tcp::8080-:80

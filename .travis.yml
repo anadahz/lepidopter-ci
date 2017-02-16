@@ -7,7 +7,9 @@ env:
     - BASE_URL=https://get.ooni.torproject.org/lepidopter
     - QEMU_KERNEL_URL=https://github.com/dhruvvyas90/qemu-rpi-kernel/raw/master
     - QEMU_KERNEL=kernel-qemu-4.1.7-jessie
-    - SSH_CMD="sshpass -p lepidopter ssh localhost -o StrictHostKeyChecking=no -p 2222 -l lepidopter"
+    - USER=lepidopter
+    - SSH_PORT=2222
+    - SSH_CMD="sshpass -p ${USER} ssh localhost -o StrictHostKeyChecking=no -p ${SSH_PORT} -l ${USER}"
 
   matrix:
     - IMAGE=lepidopter-v0.3.5-beta-armel.img
@@ -20,10 +22,10 @@ install:
   - sudo ./install-dependencies
   - sudo ./prepare-image
   - sudo ./qemu-run &
+  - ./wait-for-ssh localhost ${SSH_PORT}
 
 script:
-  - ./wait-for-ssh
   - ${SSH_CMD} "cat /etc/motd"
   - ${SSH_CMD} "ooniprobe --version"
   - ${SSH_CMD} "wget -vS -O- localhost:8080"
-  - ${SSH_CMD} "echo lepidopter | sudo -S journalctl -fu lepidopter-update"
+  - ${SSH_CMD} "echo ${USER} | sudo -S journalctl -fu lepidopter-update"
