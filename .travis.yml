@@ -24,7 +24,7 @@ install:
   - sudo ./qemu-run &
 
 script:
-  - ./wait-for-ssh ${SSH_CMD} "cat /etc/motd"
-  - ./wait-for-ssh ${SSH_CMD} "ooniprobe --version"
-  - ./wait-for-ssh ${SSH_CMD} "wget -vS -O- localhost:8080"
-  - ./wait-for-ssh ${SSH_CMD} "echo ${USER} | sudo -S journalctl -fu lepidopter-update"
+  - ./wait-for-ssh "${SSH_CMD}" "cat /etc/motd"
+  - ./wait-for-ssh "${SSH_CMD}" "ooniprobe --version"
+  - ./wait-for-ssh "${SSH_CMD}" "wget -vS -O- localhost:8080"
+  - ./wait-for-ssh "${SSH_CMD}" "echo ${USER} | sudo -S journalctl -fu lepidopter-update"
