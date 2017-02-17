@@ -9,20 +9,19 @@ env:
     - QEMU_KERNEL=kernel-qemu-4.1.7-jessie
     - USER=lepidopter
     - SSH_PORT=2222
-    - SSH_CMD="sshpass -p ${USER} ssh localhost -o StrictHostKeyChecking=no -p ${SSH_PORT} -l ${USER}"
+    - SSH_CMD="sshpass -p ${USER} autossh localhost -o StrictHostKeyChecking=no -p ${SSH_PORT} -l ${USER}"
 
   matrix:
     - IMAGE=lepidopter-v0.3.5-beta-armel.img
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get -qq install qemu-system-arm wget xz-utils gnupg kpartx sshpass
+  - sudo apt-get -qq install qemu-system-arm wget xz-utils gnupg kpartx sshpass autossh
 
 install:
   - sudo ./install-dependencies
   - sudo ./prepare-image
   - sudo ./qemu-run &
-  - ./wait-for-ssh localhost ${SSH_PORT}
 
 script:
   - ${SSH_CMD} "cat /etc/motd"
