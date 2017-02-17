@@ -3,14 +3,14 @@ set -e
 
 if [ $# -eq 2 ]; then
     sleep 60s;
-    nc -zv $1 $2
+    ${1} "${2}"
 else
     exit 1
 fi
 
 while [ $? -gt 0 ]
 do
-   sleep 10
-   echo "Waiting for host $1 in port $2"
-   nc -zv $1 $2
+   sleep 1
+   echo "Waiting for: ${1} ${2}"
+   ${1} "${2}"
 done
